@@ -17,7 +17,7 @@ Requires:       dbus-libs libXScrnSaver libnotify libnsl
 
 
 %description
-Mullvad VPN clinet. This is repackaged from the official Mullvad RPM release to
+Mullvad VPN client. This is repackaged from the official Mullvad RPM release to
 be compatible with OSTree based Fedora distributions.
 
 
@@ -42,6 +42,16 @@ ln -sr %{buildroot}/%{_datadir}/mullvad-vpn/resources/mullvad-problem-report %{b
 ln -sr %{buildroot}/%{_datadir}/mullvad-vpn/mullvad-vpn %{buildroot}/%{_bindir}/mullvad-vpn
 mkdir -p %{buildroot}/var/cache/mullvad-vpn
 mkdir -p %{buildroot}/var/log/mullvad-vpn
+
+
+%post
+%systemd_post mullvad-daemon.service
+
+%preun
+%systemd_preun mullvad-daemon.service
+
+%postun
+%systemd_postun mullvad-daemon.service
 
 
 %files
