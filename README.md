@@ -1,8 +1,9 @@
 ## Build Process
 
 ```
-dnf install rpmrebuild
+dnf install rpmdevtools
 
-VERSION=2020.3
-curl -LO https://github.com/mullvad/mullvadvpn-app/releases/download/$VERSION/MullvadVPN-$VERSION_x86_64.rpm
+rpmdev-setuptree
+spectool -g -R mullvad-vpn.spec
+rpmbuild -bb mullvad-vpn.spec
 ```
