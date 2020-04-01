@@ -1,0 +1,377 @@
+diff --git a/opt/Mullvad VPN/resources/mullvad-daemon.conf b/opt/Mullvad VPN/resources/mullvad-daemon.conf
+deleted file mode 100644
+index 70bb4b6..0000000
+--- a/opt/Mullvad VPN/resources/mullvad-daemon.conf	
++++ /dev/null
+@@ -1,6 +0,0 @@
+-# Upstart job configuration file for the Mullvad VPN daemon
+-
+-start on local-filesystems and net-device-up IFACE!=lo
+-respawn
+-chdir /opt/Mullvad\ VPN/resources
+-exec /opt/Mullvad\ VPN/resources/mullvad-daemon -v
+diff --git a/usr/bin/mullvad-problem-report b/usr/bin/mullvad-problem-report
+index 8804766..14c4b5e 120000
+--- a/usr/bin/mullvad-problem-report
++++ b/usr/bin/mullvad-problem-report
+@@ -1 +1 @@
+-/opt/Mullvad VPN/resources/mullvad-problem-report
+\ No newline at end of file
++../share/mullvad-vpn/resources/mullvad-problem-report
+\ No newline at end of file
+diff --git a/usr/bin/mullvad-vpn b/usr/bin/mullvad-vpn
+new file mode 120000
+index 0000000..23ed141
+--- /dev/null
++++ b/usr/bin/mullvad-vpn
+@@ -0,0 +1 @@
++../share/mullvad-vpn/mullvad-vpn
+\ No newline at end of file
+diff --git a/opt/Mullvad VPN/resources/mullvad-daemon.service b/usr/lib/systemd/system/mullvad-daemon.service
+similarity index 78%
+rename from opt/Mullvad VPN/resources/mullvad-daemon.service
+rename to usr/lib/systemd/system/mullvad-daemon.service
+index f8d422d..226a144 100644
+--- a/opt/Mullvad VPN/resources/mullvad-daemon.service	
++++ b/usr/lib/systemd/system/mullvad-daemon.service
+@@ -12,7 +12,7 @@ StartLimitIntervalSec=20
+ [Service]
+ Restart=always
+ RestartSec=1
+-ExecStart=/opt/Mullvad\x20VPN/resources/mullvad-daemon -v --disable-stdout-timestamps
++ExecStart=/usr/share/mullvad-vpn/resources/mullvad-daemon -v --disable-stdout-timestamps
+ 
+ [Install]
+ WantedBy=multi-user.target
+diff --git a/usr/share/applications/mullvad-vpn.desktop b/usr/share/applications/mullvad-vpn.desktop
+index 0a407c8..afc8dab 100644
+--- a/usr/share/applications/mullvad-vpn.desktop
++++ b/usr/share/applications/mullvad-vpn.desktop
+@@ -1,6 +1,6 @@
+ [Desktop Entry]
+ Name=Mullvad VPN
+-Exec="/opt/Mullvad VPN/mullvad-vpn" %U
++Exec="/usr/share/mullvad-vpn/mullvad-vpn" %U
+ Terminal=false
+ Type=Application
+ Icon=mullvad-vpn
+diff --git a/opt/Mullvad VPN/LICENSE.electron.txt b/usr/share/mullvad-vpn/LICENSE.electron.txt
+similarity index 100%
+rename from opt/Mullvad VPN/LICENSE.electron.txt
+rename to usr/share/mullvad-vpn/LICENSE.electron.txt
+diff --git a/opt/Mullvad VPN/LICENSES.chromium.html b/usr/share/mullvad-vpn/LICENSES.chromium.html
+similarity index 100%
+rename from opt/Mullvad VPN/LICENSES.chromium.html
+rename to usr/share/mullvad-vpn/LICENSES.chromium.html
+diff --git a/opt/Mullvad VPN/chrome_100_percent.pak b/usr/share/mullvad-vpn/chrome_100_percent.pak
+similarity index 100%
+rename from opt/Mullvad VPN/chrome_100_percent.pak
+rename to usr/share/mullvad-vpn/chrome_100_percent.pak
+diff --git a/opt/Mullvad VPN/chrome_200_percent.pak b/usr/share/mullvad-vpn/chrome_200_percent.pak
+similarity index 100%
+rename from opt/Mullvad VPN/chrome_200_percent.pak
+rename to usr/share/mullvad-vpn/chrome_200_percent.pak
+diff --git a/opt/Mullvad VPN/icudtl.dat b/usr/share/mullvad-vpn/icudtl.dat
+similarity index 100%
+rename from opt/Mullvad VPN/icudtl.dat
+rename to usr/share/mullvad-vpn/icudtl.dat
+diff --git a/opt/Mullvad VPN/libEGL.so b/usr/share/mullvad-vpn/libEGL.so
+similarity index 100%
+rename from opt/Mullvad VPN/libEGL.so
+rename to usr/share/mullvad-vpn/libEGL.so
+diff --git a/opt/Mullvad VPN/libGLESv2.so b/usr/share/mullvad-vpn/libGLESv2.so
+similarity index 100%
+rename from opt/Mullvad VPN/libGLESv2.so
+rename to usr/share/mullvad-vpn/libGLESv2.so
+diff --git a/opt/Mullvad VPN/libffmpeg.so b/usr/share/mullvad-vpn/libffmpeg.so
+similarity index 100%
+rename from opt/Mullvad VPN/libffmpeg.so
+rename to usr/share/mullvad-vpn/libffmpeg.so
+diff --git a/opt/Mullvad VPN/locales/am.pak b/usr/share/mullvad-vpn/locales/am.pak
+similarity index 100%
+rename from opt/Mullvad VPN/locales/am.pak
+rename to usr/share/mullvad-vpn/locales/am.pak
+diff --git a/opt/Mullvad VPN/locales/ar.pak b/usr/share/mullvad-vpn/locales/ar.pak
+similarity index 100%
+rename from opt/Mullvad VPN/locales/ar.pak
+rename to usr/share/mullvad-vpn/locales/ar.pak
+diff --git a/opt/Mullvad VPN/locales/bg.pak b/usr/share/mullvad-vpn/locales/bg.pak
+similarity index 100%
+rename from opt/Mullvad VPN/locales/bg.pak
+rename to usr/share/mullvad-vpn/locales/bg.pak
+diff --git a/opt/Mullvad VPN/locales/bn.pak b/usr/share/mullvad-vpn/locales/bn.pak
+similarity index 100%
+rename from opt/Mullvad VPN/locales/bn.pak
+rename to usr/share/mullvad-vpn/locales/bn.pak
+diff --git a/opt/Mullvad VPN/locales/ca.pak b/usr/share/mullvad-vpn/locales/ca.pak
+similarity index 100%
+rename from opt/Mullvad VPN/locales/ca.pak
+rename to usr/share/mullvad-vpn/locales/ca.pak
+diff --git a/opt/Mullvad VPN/locales/cs.pak b/usr/share/mullvad-vpn/locales/cs.pak
+similarity index 100%
+rename from opt/Mullvad VPN/locales/cs.pak
+rename to usr/share/mullvad-vpn/locales/cs.pak
+diff --git a/opt/Mullvad VPN/locales/da.pak b/usr/share/mullvad-vpn/locales/da.pak
+similarity index 100%
+rename from opt/Mullvad VPN/locales/da.pak
+rename to usr/share/mullvad-vpn/locales/da.pak
+diff --git a/opt/Mullvad VPN/locales/de.pak b/usr/share/mullvad-vpn/locales/de.pak
+similarity index 100%
+rename from opt/Mullvad VPN/locales/de.pak
+rename to usr/share/mullvad-vpn/locales/de.pak
+diff --git a/opt/Mullvad VPN/locales/el.pak b/usr/share/mullvad-vpn/locales/el.pak
+similarity index 100%
+rename from opt/Mullvad VPN/locales/el.pak
+rename to usr/share/mullvad-vpn/locales/el.pak
+diff --git a/opt/Mullvad VPN/locales/en-GB.pak b/usr/share/mullvad-vpn/locales/en-GB.pak
+similarity index 100%
+rename from opt/Mullvad VPN/locales/en-GB.pak
+rename to usr/share/mullvad-vpn/locales/en-GB.pak
+diff --git a/opt/Mullvad VPN/locales/en-US.pak b/usr/share/mullvad-vpn/locales/en-US.pak
+similarity index 100%
+rename from opt/Mullvad VPN/locales/en-US.pak
+rename to usr/share/mullvad-vpn/locales/en-US.pak
+diff --git a/opt/Mullvad VPN/locales/es-419.pak b/usr/share/mullvad-vpn/locales/es-419.pak
+similarity index 100%
+rename from opt/Mullvad VPN/locales/es-419.pak
+rename to usr/share/mullvad-vpn/locales/es-419.pak
+diff --git a/opt/Mullvad VPN/locales/es.pak b/usr/share/mullvad-vpn/locales/es.pak
+similarity index 100%
+rename from opt/Mullvad VPN/locales/es.pak
+rename to usr/share/mullvad-vpn/locales/es.pak
+diff --git a/opt/Mullvad VPN/locales/et.pak b/usr/share/mullvad-vpn/locales/et.pak
+similarity index 100%
+rename from opt/Mullvad VPN/locales/et.pak
+rename to usr/share/mullvad-vpn/locales/et.pak
+diff --git a/opt/Mullvad VPN/locales/fa.pak b/usr/share/mullvad-vpn/locales/fa.pak
+similarity index 100%
+rename from opt/Mullvad VPN/locales/fa.pak
+rename to usr/share/mullvad-vpn/locales/fa.pak
+diff --git a/opt/Mullvad VPN/locales/fi.pak b/usr/share/mullvad-vpn/locales/fi.pak
+similarity index 100%
+rename from opt/Mullvad VPN/locales/fi.pak
+rename to usr/share/mullvad-vpn/locales/fi.pak
+diff --git a/opt/Mullvad VPN/locales/fil.pak b/usr/share/mullvad-vpn/locales/fil.pak
+similarity index 100%
+rename from opt/Mullvad VPN/locales/fil.pak
+rename to usr/share/mullvad-vpn/locales/fil.pak
+diff --git a/opt/Mullvad VPN/locales/fr.pak b/usr/share/mullvad-vpn/locales/fr.pak
+similarity index 100%
+rename from opt/Mullvad VPN/locales/fr.pak
+rename to usr/share/mullvad-vpn/locales/fr.pak
+diff --git a/opt/Mullvad VPN/locales/gu.pak b/usr/share/mullvad-vpn/locales/gu.pak
+similarity index 100%
+rename from opt/Mullvad VPN/locales/gu.pak
+rename to usr/share/mullvad-vpn/locales/gu.pak
+diff --git a/opt/Mullvad VPN/locales/he.pak b/usr/share/mullvad-vpn/locales/he.pak
+similarity index 100%
+rename from opt/Mullvad VPN/locales/he.pak
+rename to usr/share/mullvad-vpn/locales/he.pak
+diff --git a/opt/Mullvad VPN/locales/hi.pak b/usr/share/mullvad-vpn/locales/hi.pak
+similarity index 100%
+rename from opt/Mullvad VPN/locales/hi.pak
+rename to usr/share/mullvad-vpn/locales/hi.pak
+diff --git a/opt/Mullvad VPN/locales/hr.pak b/usr/share/mullvad-vpn/locales/hr.pak
+similarity index 100%
+rename from opt/Mullvad VPN/locales/hr.pak
+rename to usr/share/mullvad-vpn/locales/hr.pak
+diff --git a/opt/Mullvad VPN/locales/hu.pak b/usr/share/mullvad-vpn/locales/hu.pak
+similarity index 100%
+rename from opt/Mullvad VPN/locales/hu.pak
+rename to usr/share/mullvad-vpn/locales/hu.pak
+diff --git a/opt/Mullvad VPN/locales/id.pak b/usr/share/mullvad-vpn/locales/id.pak
+similarity index 100%
+rename from opt/Mullvad VPN/locales/id.pak
+rename to usr/share/mullvad-vpn/locales/id.pak
+diff --git a/opt/Mullvad VPN/locales/it.pak b/usr/share/mullvad-vpn/locales/it.pak
+similarity index 100%
+rename from opt/Mullvad VPN/locales/it.pak
+rename to usr/share/mullvad-vpn/locales/it.pak
+diff --git a/opt/Mullvad VPN/locales/ja.pak b/usr/share/mullvad-vpn/locales/ja.pak
+similarity index 100%
+rename from opt/Mullvad VPN/locales/ja.pak
+rename to usr/share/mullvad-vpn/locales/ja.pak
+diff --git a/opt/Mullvad VPN/locales/kn.pak b/usr/share/mullvad-vpn/locales/kn.pak
+similarity index 100%
+rename from opt/Mullvad VPN/locales/kn.pak
+rename to usr/share/mullvad-vpn/locales/kn.pak
+diff --git a/opt/Mullvad VPN/locales/ko.pak b/usr/share/mullvad-vpn/locales/ko.pak
+similarity index 100%
+rename from opt/Mullvad VPN/locales/ko.pak
+rename to usr/share/mullvad-vpn/locales/ko.pak
+diff --git a/opt/Mullvad VPN/locales/lt.pak b/usr/share/mullvad-vpn/locales/lt.pak
+similarity index 100%
+rename from opt/Mullvad VPN/locales/lt.pak
+rename to usr/share/mullvad-vpn/locales/lt.pak
+diff --git a/opt/Mullvad VPN/locales/lv.pak b/usr/share/mullvad-vpn/locales/lv.pak
+similarity index 100%
+rename from opt/Mullvad VPN/locales/lv.pak
+rename to usr/share/mullvad-vpn/locales/lv.pak
+diff --git a/opt/Mullvad VPN/locales/ml.pak b/usr/share/mullvad-vpn/locales/ml.pak
+similarity index 100%
+rename from opt/Mullvad VPN/locales/ml.pak
+rename to usr/share/mullvad-vpn/locales/ml.pak
+diff --git a/opt/Mullvad VPN/locales/mr.pak b/usr/share/mullvad-vpn/locales/mr.pak
+similarity index 100%
+rename from opt/Mullvad VPN/locales/mr.pak
+rename to usr/share/mullvad-vpn/locales/mr.pak
+diff --git a/opt/Mullvad VPN/locales/ms.pak b/usr/share/mullvad-vpn/locales/ms.pak
+similarity index 100%
+rename from opt/Mullvad VPN/locales/ms.pak
+rename to usr/share/mullvad-vpn/locales/ms.pak
+diff --git a/opt/Mullvad VPN/locales/nb.pak b/usr/share/mullvad-vpn/locales/nb.pak
+similarity index 100%
+rename from opt/Mullvad VPN/locales/nb.pak
+rename to usr/share/mullvad-vpn/locales/nb.pak
+diff --git a/opt/Mullvad VPN/locales/nl.pak b/usr/share/mullvad-vpn/locales/nl.pak
+similarity index 100%
+rename from opt/Mullvad VPN/locales/nl.pak
+rename to usr/share/mullvad-vpn/locales/nl.pak
+diff --git a/opt/Mullvad VPN/locales/pl.pak b/usr/share/mullvad-vpn/locales/pl.pak
+similarity index 100%
+rename from opt/Mullvad VPN/locales/pl.pak
+rename to usr/share/mullvad-vpn/locales/pl.pak
+diff --git a/opt/Mullvad VPN/locales/pt-BR.pak b/usr/share/mullvad-vpn/locales/pt-BR.pak
+similarity index 100%
+rename from opt/Mullvad VPN/locales/pt-BR.pak
+rename to usr/share/mullvad-vpn/locales/pt-BR.pak
+diff --git a/opt/Mullvad VPN/locales/pt-PT.pak b/usr/share/mullvad-vpn/locales/pt-PT.pak
+similarity index 100%
+rename from opt/Mullvad VPN/locales/pt-PT.pak
+rename to usr/share/mullvad-vpn/locales/pt-PT.pak
+diff --git a/opt/Mullvad VPN/locales/ro.pak b/usr/share/mullvad-vpn/locales/ro.pak
+similarity index 100%
+rename from opt/Mullvad VPN/locales/ro.pak
+rename to usr/share/mullvad-vpn/locales/ro.pak
+diff --git a/opt/Mullvad VPN/locales/ru.pak b/usr/share/mullvad-vpn/locales/ru.pak
+similarity index 100%
+rename from opt/Mullvad VPN/locales/ru.pak
+rename to usr/share/mullvad-vpn/locales/ru.pak
+diff --git a/opt/Mullvad VPN/locales/sk.pak b/usr/share/mullvad-vpn/locales/sk.pak
+similarity index 100%
+rename from opt/Mullvad VPN/locales/sk.pak
+rename to usr/share/mullvad-vpn/locales/sk.pak
+diff --git a/opt/Mullvad VPN/locales/sl.pak b/usr/share/mullvad-vpn/locales/sl.pak
+similarity index 100%
+rename from opt/Mullvad VPN/locales/sl.pak
+rename to usr/share/mullvad-vpn/locales/sl.pak
+diff --git a/opt/Mullvad VPN/locales/sr.pak b/usr/share/mullvad-vpn/locales/sr.pak
+similarity index 100%
+rename from opt/Mullvad VPN/locales/sr.pak
+rename to usr/share/mullvad-vpn/locales/sr.pak
+diff --git a/opt/Mullvad VPN/locales/sv.pak b/usr/share/mullvad-vpn/locales/sv.pak
+similarity index 100%
+rename from opt/Mullvad VPN/locales/sv.pak
+rename to usr/share/mullvad-vpn/locales/sv.pak
+diff --git a/opt/Mullvad VPN/locales/sw.pak b/usr/share/mullvad-vpn/locales/sw.pak
+similarity index 100%
+rename from opt/Mullvad VPN/locales/sw.pak
+rename to usr/share/mullvad-vpn/locales/sw.pak
+diff --git a/opt/Mullvad VPN/locales/ta.pak b/usr/share/mullvad-vpn/locales/ta.pak
+similarity index 100%
+rename from opt/Mullvad VPN/locales/ta.pak
+rename to usr/share/mullvad-vpn/locales/ta.pak
+diff --git a/opt/Mullvad VPN/locales/te.pak b/usr/share/mullvad-vpn/locales/te.pak
+similarity index 100%
+rename from opt/Mullvad VPN/locales/te.pak
+rename to usr/share/mullvad-vpn/locales/te.pak
+diff --git a/opt/Mullvad VPN/locales/th.pak b/usr/share/mullvad-vpn/locales/th.pak
+similarity index 100%
+rename from opt/Mullvad VPN/locales/th.pak
+rename to usr/share/mullvad-vpn/locales/th.pak
+diff --git a/opt/Mullvad VPN/locales/tr.pak b/usr/share/mullvad-vpn/locales/tr.pak
+similarity index 100%
+rename from opt/Mullvad VPN/locales/tr.pak
+rename to usr/share/mullvad-vpn/locales/tr.pak
+diff --git a/opt/Mullvad VPN/locales/uk.pak b/usr/share/mullvad-vpn/locales/uk.pak
+similarity index 100%
+rename from opt/Mullvad VPN/locales/uk.pak
+rename to usr/share/mullvad-vpn/locales/uk.pak
+diff --git a/opt/Mullvad VPN/locales/vi.pak b/usr/share/mullvad-vpn/locales/vi.pak
+similarity index 100%
+rename from opt/Mullvad VPN/locales/vi.pak
+rename to usr/share/mullvad-vpn/locales/vi.pak
+diff --git a/opt/Mullvad VPN/locales/zh-CN.pak b/usr/share/mullvad-vpn/locales/zh-CN.pak
+similarity index 100%
+rename from opt/Mullvad VPN/locales/zh-CN.pak
+rename to usr/share/mullvad-vpn/locales/zh-CN.pak
+diff --git a/opt/Mullvad VPN/locales/zh-TW.pak b/usr/share/mullvad-vpn/locales/zh-TW.pak
+similarity index 100%
+rename from opt/Mullvad VPN/locales/zh-TW.pak
+rename to usr/share/mullvad-vpn/locales/zh-TW.pak
+diff --git a/opt/Mullvad VPN/mullvad-gui b/usr/share/mullvad-vpn/mullvad-gui
+similarity index 100%
+rename from opt/Mullvad VPN/mullvad-gui
+rename to usr/share/mullvad-vpn/mullvad-gui
+diff --git a/opt/Mullvad VPN/mullvad-vpn b/usr/share/mullvad-vpn/mullvad-vpn
+similarity index 100%
+rename from opt/Mullvad VPN/mullvad-vpn
+rename to usr/share/mullvad-vpn/mullvad-vpn
+diff --git a/opt/Mullvad VPN/natives_blob.bin b/usr/share/mullvad-vpn/natives_blob.bin
+similarity index 100%
+rename from opt/Mullvad VPN/natives_blob.bin
+rename to usr/share/mullvad-vpn/natives_blob.bin
+diff --git a/opt/Mullvad VPN/resources.pak b/usr/share/mullvad-vpn/resources.pak
+similarity index 100%
+rename from opt/Mullvad VPN/resources.pak
+rename to usr/share/mullvad-vpn/resources.pak
+diff --git a/opt/Mullvad VPN/resources/CHANGELOG.md b/usr/share/mullvad-vpn/resources/CHANGELOG.md
+similarity index 100%
+rename from opt/Mullvad VPN/resources/CHANGELOG.md
+rename to usr/share/mullvad-vpn/resources/CHANGELOG.md
+diff --git a/opt/Mullvad VPN/resources/api_root_ca.pem b/usr/share/mullvad-vpn/resources/api_root_ca.pem
+similarity index 100%
+rename from opt/Mullvad VPN/resources/api_root_ca.pem
+rename to usr/share/mullvad-vpn/resources/api_root_ca.pem
+diff --git a/opt/Mullvad VPN/resources/app.asar b/usr/share/mullvad-vpn/resources/app.asar
+similarity index 100%
+rename from opt/Mullvad VPN/resources/app.asar
+rename to usr/share/mullvad-vpn/resources/app.asar
+diff --git a/opt/Mullvad VPN/resources/ca.crt b/usr/share/mullvad-vpn/resources/ca.crt
+similarity index 100%
+rename from opt/Mullvad VPN/resources/ca.crt
+rename to usr/share/mullvad-vpn/resources/ca.crt
+diff --git a/opt/Mullvad VPN/resources/libtalpid_openvpn_plugin.so b/usr/share/mullvad-vpn/resources/libtalpid_openvpn_plugin.so
+similarity index 100%
+rename from opt/Mullvad VPN/resources/libtalpid_openvpn_plugin.so
+rename to usr/share/mullvad-vpn/resources/libtalpid_openvpn_plugin.so
+diff --git a/opt/Mullvad VPN/resources/mullvad-daemon b/usr/share/mullvad-vpn/resources/mullvad-daemon
+similarity index 100%
+rename from opt/Mullvad VPN/resources/mullvad-daemon
+rename to usr/share/mullvad-vpn/resources/mullvad-daemon
+diff --git a/opt/Mullvad VPN/resources/mullvad-problem-report b/usr/share/mullvad-vpn/resources/mullvad-problem-report
+similarity index 100%
+rename from opt/Mullvad VPN/resources/mullvad-problem-report
+rename to usr/share/mullvad-vpn/resources/mullvad-problem-report
+diff --git a/opt/Mullvad VPN/resources/openvpn b/usr/share/mullvad-vpn/resources/openvpn
+similarity index 100%
+rename from opt/Mullvad VPN/resources/openvpn
+rename to usr/share/mullvad-vpn/resources/openvpn
+diff --git a/opt/Mullvad VPN/resources/relays.json b/usr/share/mullvad-vpn/resources/relays.json
+similarity index 100%
+rename from opt/Mullvad VPN/resources/relays.json
+rename to usr/share/mullvad-vpn/resources/relays.json
+diff --git a/opt/Mullvad VPN/resources/sslocal b/usr/share/mullvad-vpn/resources/sslocal
+similarity index 100%
+rename from opt/Mullvad VPN/resources/sslocal
+rename to usr/share/mullvad-vpn/resources/sslocal
+diff --git a/opt/Mullvad VPN/snapshot_blob.bin b/usr/share/mullvad-vpn/snapshot_blob.bin
+similarity index 100%
+rename from opt/Mullvad VPN/snapshot_blob.bin
+rename to usr/share/mullvad-vpn/snapshot_blob.bin
+diff --git a/opt/Mullvad VPN/swiftshader/libEGL.so b/usr/share/mullvad-vpn/swiftshader/libEGL.so
+similarity index 100%
+rename from opt/Mullvad VPN/swiftshader/libEGL.so
+rename to usr/share/mullvad-vpn/swiftshader/libEGL.so
+diff --git a/opt/Mullvad VPN/swiftshader/libGLESv2.so b/usr/share/mullvad-vpn/swiftshader/libGLESv2.so
+similarity index 100%
+rename from opt/Mullvad VPN/swiftshader/libGLESv2.so
+rename to usr/share/mullvad-vpn/swiftshader/libGLESv2.so
+diff --git a/opt/Mullvad VPN/swiftshader/libvk_swiftshader.so b/usr/share/mullvad-vpn/swiftshader/libvk_swiftshader.so
+similarity index 100%
+rename from opt/Mullvad VPN/swiftshader/libvk_swiftshader.so
+rename to usr/share/mullvad-vpn/swiftshader/libvk_swiftshader.so
+diff --git a/opt/Mullvad VPN/v8_context_snapshot.bin b/usr/share/mullvad-vpn/v8_context_snapshot.bin
+similarity index 100%
+rename from opt/Mullvad VPN/v8_context_snapshot.bin
+rename to usr/share/mullvad-vpn/v8_context_snapshot.bin
