@@ -74,5 +74,5 @@ mkdir -p %{buildroot}/var/log/mullvad-vpn
 
 
 %changelog
-* Sun Mar 29 2020 Initial version
--
+* Wed Apr  1 2020 Nicholas Rodrigues Lordello <nlordell@gmail.com>
+- Initial repackaging of `mullvad-vpn` RPM pacakge
