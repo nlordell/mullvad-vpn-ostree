@@ -54,23 +54,23 @@ mkdir -p %{buildroot}/var/log/mullvad-vpn
 
 
 %files
-%license LICENSE.md
-%dir /var/cache/mullvad-vpn
-%dir /var/log/mullvad-vpn
-%{_bindir}/mullvad
-%{_bindir}/mullvad-problem-report
-%{_bindir}/mullvad-vpn
-%{_datadir}/applications/mullvad-vpn.desktop
-%{_datadir}/icons/hicolor/16x16/apps/mullvad-vpn.png
-%{_datadir}/icons/hicolor/32x32/apps/mullvad-vpn.png
-%{_datadir}/icons/hicolor/48x48/apps/mullvad-vpn.png
-%{_datadir}/icons/hicolor/64x64/apps/mullvad-vpn.png
-%{_datadir}/icons/hicolor/128x128/apps/mullvad-vpn.png
-%{_datadir}/icons/hicolor/256x256/apps/mullvad-vpn.png
-%{_datadir}/icons/hicolor/512x512/apps/mullvad-vpn.png
-%{_datadir}/icons/hicolor/1024x1024/apps/mullvad-vpn.png
-%{_datadir}/mullvad-vpn/*
-%{_unitdir}/mullvad-daemon.service
+%attr(0444,root,root) %license LICENSE.md
+%attr(-,root,root) %dir /var/cache/mullvad-vpn
+%attr(-,root,root) %dir /var/log/mullvad-vpn
+%attr(-,root,root) %{_bindir}/mullvad
+%attr(-,root,root) %{_bindir}/mullvad-problem-report
+%attr(-,root,root) %{_bindir}/mullvad-vpn
+%attr(-,root,root) %{_datadir}/applications/mullvad-vpn.desktop
+%attr(-,root,root) %{_datadir}/icons/hicolor/16x16/apps/mullvad-vpn.png
+%attr(-,root,root) %{_datadir}/icons/hicolor/32x32/apps/mullvad-vpn.png
+%attr(-,root,root) %{_datadir}/icons/hicolor/48x48/apps/mullvad-vpn.png
+%attr(-,root,root) %{_datadir}/icons/hicolor/64x64/apps/mullvad-vpn.png
+%attr(-,root,root) %{_datadir}/icons/hicolor/128x128/apps/mullvad-vpn.png
+%attr(-,root,root) %{_datadir}/icons/hicolor/256x256/apps/mullvad-vpn.png
+%attr(-,root,root) %{_datadir}/icons/hicolor/512x512/apps/mullvad-vpn.png
+%attr(-,root,root) %{_datadir}/icons/hicolor/1024x1024/apps/mullvad-vpn.png
+%attr(-,root,root) %{_datadir}/mullvad-vpn/*
+%attr(-,root,root) %{_unitdir}/mullvad-daemon.service
 
 
 %changelog
