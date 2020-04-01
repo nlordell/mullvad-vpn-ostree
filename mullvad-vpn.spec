@@ -1,8 +1,8 @@
 %define mullvad_ver 2020.3
 
-Name:           mullvad-vpn
+Name:           mullvad-vpn-ostree
 Version:        %{mullvad_ver}.0
-Release:        1%{?dist}_ostree
+Release:        1%{?dist}
 Summary:        Mullvad VPN client
 
 License:        GPL-3.0
@@ -10,10 +10,9 @@ URL:            https://github.com/mullvad/mullvadvpn-app#readme
 Source0:        https://github.com/mullvad/mullvadvpn-app/releases/download/%{mullvad_ver}/MullvadVPN-%{mullvad_ver}_x86_64.rpm
 Source1:        https://raw.githubusercontent.com/mullvad/mullvadvpn-app/master/LICENSE.md
 
-BuildArch:      x86_64
-
 AutoReqProv:    no
 Requires:       dbus-libs libXScrnSaver libnotify libnsl
+Provides:       mullvad-vpn = %{mullvad_ver}.0-1 mullvad-vpn(x86_64) = %{mullvad_ver}.0-1
 
 
 %description
