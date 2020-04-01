@@ -11,6 +11,7 @@ Source0:        https://github.com/mullvad/mullvadvpn-app/releases/download/%{mu
 Source1:        https://raw.githubusercontent.com/mullvad/mullvadvpn-app/master/LICENSE.md
 
 AutoReqProv:    no
+BuildRequires:  systemd systemd-rpm-macros
 Requires:       dbus-libs libXScrnSaver libnotify libnsl
 Provides:       mullvad-vpn = %{mullvad_ver}.0-1 mullvad-vpn(x86_64) = %{mullvad_ver}.0-1
 
