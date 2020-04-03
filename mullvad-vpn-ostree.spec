@@ -2,7 +2,7 @@
 
 Name:           mullvad-vpn-ostree
 Version:        %{mullvad_ver}.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Mullvad VPN client
 
 License:        GPL-3.0
@@ -13,6 +13,7 @@ Source1:        https://raw.githubusercontent.com/mullvad/mullvadvpn-app/master/
 AutoReqProv:    no
 BuildRequires:  systemd systemd-rpm-macros
 Requires:       dbus-libs libXScrnSaver libnotify libnsl
+Recommends:     libappindicator-gtk3
 Provides:       mullvad-vpn = %{mullvad_ver}.0-1 mullvad-vpn(x86_64) = %{mullvad_ver}.0-1
 
 
@@ -75,5 +76,8 @@ mkdir -p %{buildroot}/var/log/mullvad-vpn
 
 
 %changelog
+* Fri Apr  3 2020 Nicholas Rodrigues Lordello <nlordell@gmail.com>
+- Added weak dependency to `libappindicator-gtk3`
+
 * Wed Apr  1 2020 Nicholas Rodrigues Lordello <nlordell@gmail.com>
 - Initial repackaging of `mullvad-vpn` RPM pacakge
