@@ -1,0 +1,66 @@
+diff --git a/usr/bin/mullvad-problem-report b/usr/bin/mullvad-problem-report
+index 8804766..14c4b5e 120000
+--- a/usr/bin/mullvad-problem-report
++++ b/usr/bin/mullvad-problem-report
+@@ -1 +1 @@
+-/opt/Mullvad VPN/resources/mullvad-problem-report
+\ No newline at end of file
++../share/mullvad-vpn/resources/mullvad-problem-report
+\ No newline at end of file
+diff --git a/usr/bin/mullvad-vpn b/usr/bin/mullvad-vpn
+new file mode 100755
+index 0000000..ef86b9e
+--- /dev/null
++++ b/usr/bin/mullvad-vpn
+@@ -0,0 +1,3 @@
++#!/usr/bin/env bash
++set -eu
++exec "/usr/share/mullvad-vpn/mullvad-gui" --no-sandbox "$@"
+diff --git a/usr/share/applications/mullvad-vpn.desktop b/usr/share/applications/mullvad-vpn.desktop
+index 0a407c8..afc8dab 100644
+--- a/usr/share/applications/mullvad-vpn.desktop
++++ b/usr/share/applications/mullvad-vpn.desktop
+@@ -1,6 +1,6 @@
+ [Desktop Entry]
+ Name=Mullvad VPN
+-Exec="/opt/Mullvad VPN/mullvad-vpn" %U
++Exec="/usr/share/mullvad-vpn/mullvad-vpn" %U
+ Terminal=false
+ Type=Application
+ Icon=mullvad-vpn
+diff --git a/usr/share/mullvad-vpn/mullvad-vpn b/usr/share/mullvad-vpn/mullvad-vpn
+deleted file mode 100755
+index cf75c4e..0000000
+--- a/usr/share/mullvad-vpn/mullvad-vpn
++++ /dev/null
+@@ -1,5 +0,0 @@
+-#!/usr/bin/env bash
+-set -eu
+-
+-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+-exec "$SCRIPT_DIR/mullvad-gui" --no-sandbox "$@"
+diff --git a/usr/share/mullvad-vpn/resources/mullvad-daemon.conf b/usr/share/mullvad-vpn/resources/mullvad-daemon.conf
+deleted file mode 100644
+index 70bb4b6..0000000
+--- a/usr/share/mullvad-vpn/resources/mullvad-daemon.conf
++++ /dev/null
+@@ -1,6 +0,0 @@
+-# Upstart job configuration file for the Mullvad VPN daemon
+-
+-start on local-filesystems and net-device-up IFACE!=lo
+-respawn
+-chdir /opt/Mullvad\ VPN/resources
+-exec /opt/Mullvad\ VPN/resources/mullvad-daemon -v
+diff --git a/usr/share/mullvad-vpn/resources/mullvad-daemon.service b/usr/share/mullvad-vpn/resources/mullvad-daemon.service
+index f8d422d..226a144 100644
+--- a/usr/share/mullvad-vpn/resources/mullvad-daemon.service
++++ b/usr/share/mullvad-vpn/resources/mullvad-daemon.service
+@@ -12,7 +12,7 @@ StartLimitIntervalSec=20
+ [Service]
+ Restart=always
+ RestartSec=1
+-ExecStart=/opt/Mullvad\x20VPN/resources/mullvad-daemon -v --disable-stdout-timestamps
++ExecStart=/usr/share/mullvad-vpn/resources/mullvad-daemon -v --disable-stdout-timestamps
+ 
+ [Install]
+ WantedBy=multi-user.target

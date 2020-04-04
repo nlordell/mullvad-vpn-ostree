@@ -2,13 +2,14 @@
 
 Name:           mullvad-vpn-ostree
 Version:        %{mullvad_ver}.0
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Mullvad VPN client
 
 License:        GPL-3.0
 URL:            https://github.com/mullvad/mullvadvpn-app#readme
 Source0:        https://github.com/mullvad/mullvadvpn-app/releases/download/%{mullvad_ver}/MullvadVPN-%{mullvad_ver}_x86_64.rpm
 Source1:        https://raw.githubusercontent.com/mullvad/mullvadvpn-app/master/LICENSE.md
+Patch0:         mullvad-vpn.patch
 
 AutoReqProv:    no
 BuildRequires:  systemd systemd-rpm-macros
@@ -24,23 +25,18 @@ be compatible with OSTree based Fedora distributions.
 
 %prep
 rpm2archive < %{SOURCE0} | tar -xzvvf -
+mv 'opt/Mullvad VPN' usr/share/mullvad-vpn
+%patch -p1
 cp %{SOURCE1} LICENSE.md
+mv usr/share/mullvad-vpn/resources/mullvad-daemon.service .
 
 
 %build
-mv 'opt/Mullvad VPN' usr/share/mullvad-vpn
-mv usr/share/mullvad-vpn/resources/mullvad-daemon.service mullvad-daemon.service
-rm usr/bin/mullvad-problem-report
-rm usr/share/mullvad-vpn/resources/mullvad-daemon.conf
-sed -Ei 's/\/opt\/Mullvad.*?VPN/\/usr\/share\/mullvad-vpn/' mullvad-daemon.service
-sed -Ei 's/\/opt\/Mullvad.*?VPN/\/usr\/share\/mullvad-vpn/' usr/share/applications/mullvad-vpn.desktop
 
 
 %install
 mv 'usr' %{buildroot}/%{_prefix}
 install -m 0644 -D -t %{buildroot}/%{_unitdir} mullvad-daemon.service
-ln -sr %{buildroot}/%{_datadir}/mullvad-vpn/resources/mullvad-problem-report %{buildroot}/%{_bindir}/mullvad-problem-report
-ln -sr %{buildroot}/%{_datadir}/mullvad-vpn/mullvad-vpn %{buildroot}/%{_bindir}/mullvad-vpn
 mkdir -p %{buildroot}/var/cache/mullvad-vpn
 mkdir -p %{buildroot}/var/log/mullvad-vpn
 
@@ -76,8 +72,12 @@ mkdir -p %{buildroot}/var/log/mullvad-vpn
 
 
 %changelog
-* Fri Apr  3 2020 Nicholas Rodrigues Lordello <nlordell@gmail.com>
+* Sat Apr 04 2020 Nicholas Rodrigues Lordello <nlordell@gmail.com> 2020.3.0-3
+- Use a `.patch` file for all modifications to the official release
+- Fix `mullvad-vpn` wrapper script not working
+
+* Fri Apr 03 2020 Nicholas Rodrigues Lordello <nlordell@gmail.com> 2020.3.0-2
 - Added weak dependency to `libappindicator-gtk3`
 
-* Wed Apr  1 2020 Nicholas Rodrigues Lordello <nlordell@gmail.com>
+* Wed Apr 01 2020 Nicholas Rodrigues Lordello <nlordell@gmail.com> 2020.3.0-1
 - Initial repackaging of `mullvad-vpn` RPM pacakge
