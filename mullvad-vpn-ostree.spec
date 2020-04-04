@@ -2,7 +2,7 @@
 
 Name:           mullvad-vpn-ostree
 Version:        %{mullvad_ver}.0
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Mullvad VPN client
 
 License:        GPL-3.0
@@ -76,6 +76,9 @@ mkdir -p %{buildroot}/var/log/mullvad-vpn
 
 
 %changelog
+* Sat Apr 04 2020 Your Name <you@example.com> 2020.3.0-3
+- Building Mullvad VPN application from source
+
 * Fri Apr  3 2020 Nicholas Rodrigues Lordello <nlordell@gmail.com>
 - Added weak dependency to `libappindicator-gtk3`
 
