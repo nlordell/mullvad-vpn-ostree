@@ -76,11 +76,11 @@ mkdir -p %{buildroot}/var/log/mullvad-vpn
 
 
 %changelog
-* Sat Apr 04 2020 Your Name <you@example.com> 2020.3.0-3
+* Sat Apr 04 2020 Nicholas Rodrigues Lordello <nlordell@gmail.com> 2020.3.0-3
 - Building Mullvad VPN application from source
 
-* Fri Apr  3 2020 Nicholas Rodrigues Lordello <nlordell@gmail.com>
+* Fri Apr 03 2020 Nicholas Rodrigues Lordello <nlordell@gmail.com> 2020.3.0-2
 - Added weak dependency to `libappindicator-gtk3`
 
-* Wed Apr  1 2020 Nicholas Rodrigues Lordello <nlordell@gmail.com>
+* Wed Apr 01 2020 Nicholas Rodrigues Lordello <nlordell@gmail.com> 2020.3.0-1
 - Initial repackaging of `mullvad-vpn` RPM pacakge
