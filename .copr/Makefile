@@ -3,7 +3,6 @@ outdir ?= "target"
 
 srpm:
 	dnf install -y rpmdevtools
-	spectool -g -R ${spec}
-	rpmbuild -bs ${spec}
 	mkdir -p ${outdir}
-	cp ~/*build/SRPMS/* ${outdir}
+	spectool -g ${spec}
+	rpkg srpm --spec ${spec} --outdir ${outdir}
