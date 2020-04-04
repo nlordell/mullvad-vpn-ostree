@@ -2,7 +2,9 @@ spec ?= "mullvad-vpn-ostree.spec"
 outdir ?= "target"
 
 srpm:
-	dnf install -y rpkg rpmdevtools
+	dnf install -y rpmdevtools
+	spectool -g -R ${spec}
+	cp *.patch ~/*build/SOURCES/
+	rpmbuild -bs ${spec}
 	mkdir -p ${outdir}
-	spectool -g --directory ${outdir} ${spec}
-	rpkg srpm --outdir ${outdir} --spec ${spec}
+	cp ~/*build/SRPMS/* ${outdir}
