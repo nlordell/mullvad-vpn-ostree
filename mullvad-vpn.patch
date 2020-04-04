@@ -24,7 +24,7 @@ index 0a407c8..afc8dab 100644
  [Desktop Entry]
  Name=Mullvad VPN
 -Exec="/opt/Mullvad VPN/mullvad-vpn" %U
-+Exec="/usr/share/mullvad-vpn/mullvad-vpn" %U
++Exec="/usr/bin/mullvad-vpn" %U
  Terminal=false
  Type=Application
  Icon=mullvad-vpn
