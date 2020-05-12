@@ -1,4 +1,4 @@
-%define mullvad_ver 2020.3
+%define mullvad_ver 2020.4
 
 Name:           mullvad-vpn-ostree
 Version:        %{mullvad_ver}.0
