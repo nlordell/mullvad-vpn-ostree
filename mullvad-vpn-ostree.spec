@@ -2,7 +2,7 @@
 
 Name:           mullvad-vpn-ostree
 Version:        %{mullvad_ver}.0
-Release:        3%{?dist}
+Release:        1%{?dist}
 Summary:        Mullvad VPN client
 
 License:        GPL-3.0
@@ -72,6 +72,9 @@ mkdir -p %{buildroot}/var/log/mullvad-vpn
 
 
 %changelog
+* Sat May 12 2020 Nicholas Rodrigues Lordello <nlordell@gmail.com> 2020.4.0-1
+- Bump to version `2020.4`
+
 * Sat Apr 04 2020 Nicholas Rodrigues Lordello <nlordell@gmail.com> 2020.3.0-3
 - Use a `.patch` file for all modifications to the official release
 - Fix `mullvad-vpn` wrapper script not working
