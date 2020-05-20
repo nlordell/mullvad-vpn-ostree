@@ -29,6 +29,8 @@ mv 'opt/Mullvad VPN' usr/share/mullvad-vpn
 %patch -p1
 cp %{SOURCE1} LICENSE.md
 mv usr/share/mullvad-vpn/resources/mullvad-daemon.service .
+mv usr/local/share/zsh usr/share/zsh
+rmdir usr/local/share usr/local
 
 
 %build
@@ -59,6 +61,7 @@ mkdir -p %{buildroot}/var/log/mullvad-vpn
 %attr(-,root,root) %{_bindir}/mullvad-problem-report
 %attr(-,root,root) %{_bindir}/mullvad-vpn
 %attr(-,root,root) %{_datadir}/applications/mullvad-vpn.desktop
+%attr(-,root,root) %{_datadir}/bash-completion/completions/mullvad
 %attr(-,root,root) %{_datadir}/icons/hicolor/16x16/apps/mullvad-vpn.png
 %attr(-,root,root) %{_datadir}/icons/hicolor/32x32/apps/mullvad-vpn.png
 %attr(-,root,root) %{_datadir}/icons/hicolor/48x48/apps/mullvad-vpn.png
@@ -68,11 +71,12 @@ mkdir -p %{buildroot}/var/log/mullvad-vpn
 %attr(-,root,root) %{_datadir}/icons/hicolor/512x512/apps/mullvad-vpn.png
 %attr(-,root,root) %{_datadir}/icons/hicolor/1024x1024/apps/mullvad-vpn.png
 %attr(-,root,root) %{_datadir}/mullvad-vpn/*
+%attr(-,root,root) %{_datadir}/zsh/site-functions/_mullvad
 %attr(-,root,root) %{_unitdir}/mullvad-daemon.service
 
 
 %changelog
-* Sat May 12 2020 Nicholas Rodrigues Lordello <nlordell@gmail.com> 2020.4.0-1
+* Tue May 12 2020 Nicholas Rodrigues Lordello <nlordell@gmail.com> 2020.4.0-1
 - Bump to version `2020.4`
 
 * Sat Apr 04 2020 Nicholas Rodrigues Lordello <nlordell@gmail.com> 2020.3.0-3
