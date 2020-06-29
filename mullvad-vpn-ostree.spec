@@ -1,4 +1,4 @@
-%define mullvad_ver 2020.4
+%define mullvad_ver 2020.5
 
 Name:           mullvad-vpn-ostree
 Version:        %{mullvad_ver}.0
@@ -58,6 +58,7 @@ mkdir -p %{buildroot}/var/log/mullvad-vpn
 %attr(-,root,root) %dir /var/cache/mullvad-vpn
 %attr(-,root,root) %dir /var/log/mullvad-vpn
 %attr(-,root,root) %{_bindir}/mullvad
+%attr(-,root,root) %{_bindir}/mullvad-exclude
 %attr(-,root,root) %{_bindir}/mullvad-problem-report
 %attr(-,root,root) %{_bindir}/mullvad-vpn
 %attr(-,root,root) %{_datadir}/applications/mullvad-vpn.desktop
@@ -76,6 +77,9 @@ mkdir -p %{buildroot}/var/log/mullvad-vpn
 
 
 %changelog
+* Mon Jun 29 2020 Nicholas Rodrigues Lordello <nlordell@gmail.com> 2020.5.0-1
+- Bump to version `2020.5`
+
 * Tue May 12 2020 Nicholas Rodrigues Lordello <nlordell@gmail.com> 2020.4.0-1
 - Bump to version `2020.4`
 
